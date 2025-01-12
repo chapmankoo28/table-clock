@@ -23,8 +23,8 @@ Download Table Clock at the [release page](https://github.com/chapmankoo28/table
 
 ### Available Platforms
 
-- Windows (x64)
-- Debian (amd64)
+- Windows
+- Linux (deb)
 - Android APK
 
 ## Building
