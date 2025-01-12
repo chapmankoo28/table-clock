@@ -1,0 +1,20 @@
+<WixLocalization
+  Culture="en-US"
+  xmlns="http://schemas.microsoft.com/wix/2006/localization"
+>
+  <String Id="LaunchApp"> Launch Table Clock </String>
+  <String Id="DowngradeErrorMessage">
+    A newer version of Table Clock is already installed.
+  </String>
+  <String Id="PathEnvVarFeature">
+    Add the install location of the Table Clock executable to
+    the PATH system environment variable. This allows the
+    Table Clock executable to be called from any location.
+  </String>
+  <String Id="InstallAppFeature">
+    Installs Table Clock
+  </String>    
+  <String Id="ShortcutsDlgTitle">Shortcut Options</String>
+  <String Id="CreateDesktopShortcut">Create Desktop Shortcut</String>
+  <String Id="CreateStartMenuShortcut">Create Start Menu Shortcut</String>
+</WixLocalization>

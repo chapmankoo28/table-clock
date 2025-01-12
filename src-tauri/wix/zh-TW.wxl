@@ -1,0 +1,18 @@
+<WixLocalization
+  Culture="zh-TW"
+  xmlns="http://schemas.microsoft.com/wix/2006/localization"
+>
+  <String Id="LaunchApp"> 打開 Table Clock </String>
+  <String Id="DowngradeErrorMessage">
+    已安裝版本更高的 Table Clock。
+  </String>
+  <String Id="PathEnvVarFeature">
+    將 Table Clock 的安裝位置新增至 PATH 系統環境變數或使用者變數可使 Table Clock 可從任何位置執行。
+  </String>
+  <String Id="InstallAppFeature">
+    安裝 Table Clock。
+  </String>
+  <String Id="ShortcutsDlgTitle">捷徑選項</String>
+  <String Id="CreateDesktopShortcut">建立桌面捷徑</String>
+  <String Id="CreateStartMenuShortcut">建立開始選單捷徑</String>
+</WixLocalization>

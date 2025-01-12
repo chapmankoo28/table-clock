@@ -1,0 +1,14 @@
+body {
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+:fullscreen {
+    cursor: default !important;
+}
+
+/* @media (max-width: 768px)  if (screenWidth <= 768) */
+/* @media (min-width: 1024px) if (screenWidth >= 1024) */
