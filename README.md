@@ -19,9 +19,13 @@ It turns your device into a table clock display.
 
 ## Download
 
-- [Windows]()
-- [Linux]()
-- [Android]()
+Download Table Clock at the [release page](https://github.com/chapmankoo28/table-clock/releases/latest/).
+
+### Available Platforms
+
+- Windows (x64)
+- Debian (amd64)
+- Android APK
 
 ## Building
 
