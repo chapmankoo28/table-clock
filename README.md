@@ -33,7 +33,7 @@ Building this Tauri app requires a few dependencies.
 
 Bun is used as the package manager for this app. [Install Bun](https://bun.sh/)
 
-Before building this app, follow the official [Tauri prerequisites guide](ttps://v2.tauri.app/start/prerequisites/). 
+Before building this app, follow the official [Tauri prerequisites guide](https://v2.tauri.app/start/prerequisites/). 
 
 Now, you can build your own by following the [Tauri building guide](https://v2.tauri.app/distribute/).
 
