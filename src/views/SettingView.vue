@@ -1,48 +1,48 @@
 <script lang="ts" setup>
-import BackIcon from '../components/BackIcon.vue'
-import { computed, onMounted, ref, watch } from 'vue'
-import { useThemeStore } from '../stores/useThemeStore'
-import { useSettingStore } from '../stores/useSettingStore'
-import { useI18n } from 'vue-i18n'
-import { getCurrentWindow } from '@tauri-apps/api/window'
-import { onBeforeRouteLeave } from 'vue-router'
-import { platform } from '@tauri-apps/plugin-os';
+import BackIcon from "@/components/BackIcon.vue";
+import { computed, onMounted, ref, watch } from "vue";
+import { useThemeStore } from "@/stores/useThemeStore";
+import { useSettingStore } from "@/stores/useSettingStore";
+import { useI18n } from "vue-i18n";
+import { getCurrentWindow } from "@tauri-apps/api/window";
+import { onBeforeRouteLeave } from "vue-router";
+import { platform } from "@tauri-apps/plugin-os";
 
-const { t, locale } = useI18n({ useScope: 'global' })
-const themeStore = useThemeStore()
-const settingStore = useSettingStore()
+const { t, locale } = useI18n({ useScope: "global" });
+const themeStore = useThemeStore();
+const settingStore = useSettingStore();
 const appWindow = getCurrentWindow();
 const isFullscreen = ref(false);
 const currentPlatform = platform();
 
 onMounted(async () => {
-  isFullscreen.value = await appWindow.isFullscreen()
-  await appWindow.listen('tauri://resize', async () => {
-    isFullscreen.value = await appWindow.isFullscreen()
-  })
-})
+  isFullscreen.value = await appWindow.isFullscreen();
+  await appWindow.listen("tauri://resize", async () => {
+    isFullscreen.value = await appWindow.isFullscreen();
+  });
+});
 
-onBeforeRouteLeave(() => settingStore.saveSettingsToStore())
+onBeforeRouteLeave(() => settingStore.saveSettingsToStore());
 
 const settings = computed({
   get: () => settingStore.settings,
   set: (newSettings) => {
-    settingStore.settings = newSettings
-    settingStore.saveSettingsToStore()
-  }
-})
+    settingStore.settings = newSettings;
+    settingStore.saveSettingsToStore();
+  },
+});
 
 watch(
   () => settingStore.settings.lang,
   (newLang) => {
-    locale.value = newLang
+    locale.value = newLang;
   },
-  { immediate: true }
-)
+  { immediate: true },
+);
 
-const changeTheme = (theme: 'light' | 'dark') => {
-  themeStore.setTheme(theme)
-}
+const changeTheme = (theme: "light" | "dark") => {
+  themeStore.setTheme(theme);
+};
 </script>
 
 <template>
@@ -57,25 +57,29 @@ const changeTheme = (theme: 'light' | 'dark') => {
       </ul>
       <ul>
         <li>
-          <h1>{{ t('settings.settings') }}</h1>
+          <h1>{{ t("settings.settings") }}</h1>
         </li>
       </ul>
       <ul>
-        <li>
-        </li>
+        <li></li>
       </ul>
     </nav>
 
-    <hr>
+    <hr />
 
     <div class="setting-item dropdown">
-      <p class="setting-title">{{ t('settings.appearance') }}
+      <p class="setting-title">
+        {{ t("settings.appearance") }}
         <!--: {{ themeStore.currentTheme }} {{ settings.theme }}  -->
       </p>
-      <select class="setting-option" aria-label="Select" v-model="themeStore.currentTheme"
-        @change="changeTheme(themeStore.currentTheme)">
-        <option value="light">{{ t('settings.light') }}</option>
-        <option value="dark">{{ t('settings.dark') }}</option>
+      <select
+        class="setting-option"
+        aria-label="Select"
+        v-model="themeStore.currentTheme"
+        @change="changeTheme(themeStore.currentTheme)"
+      >
+        <option value="light">{{ t("settings.light") }}</option>
+        <option value="dark">{{ t("settings.dark") }}</option>
       </select>
     </div>
 
@@ -83,12 +87,12 @@ const changeTheme = (theme: 'light' | 'dark') => {
 
     <div class="setting-item dropdown">
       <p class="setting-title">
-        {{ t('settings.lang') }}
+        {{ t("settings.lang") }}
         <!--: {{ settings.lang }} -->
       </p>
       <select class="setting-option" aria-label="Select" v-model="settings.lang">
-        <option value="en">{{ t('settings.en') }}</option>
-        <option value="zh-HK">{{ t('settings.zh-HK') }}</option>
+        <option value="en">{{ t("settings.en") }}</option>
+        <option value="zh-HK">{{ t("settings.zh-HK") }}</option>
       </select>
     </div>
 
@@ -96,13 +100,13 @@ const changeTheme = (theme: 'light' | 'dark') => {
 
     <div class="setting-item dropdown">
       <p class="setting-title">
-        {{ t('settings.layout') }}
+        {{ t("settings.layout") }}
         <!--: {{ settings.layout }} -->
       </p>
       <select class="setting-option" aria-label="Select" v-model="settings.layout">
-        <option value="clock">{{ t('settings.clock') }}</option>
-        <option value="cal">{{ t('settings.cal') }}</option>
-        <option value="cal-clock">{{ t('settings.cal') }} | {{ t('settings.clock') }}</option>
+        <option value="clock">{{ t("settings.clock") }}</option>
+        <option value="cal">{{ t("settings.cal") }}</option>
+        <option value="cal-clock">{{ t("settings.cal") }} | {{ t("settings.clock") }}</option>
         <!-- <option value="clock-cal">{{ t('settings.clock') }} | {{ t('settings.cal') }}</option> -->
       </select>
     </div>
@@ -112,28 +116,28 @@ const changeTheme = (theme: 'light' | 'dark') => {
     <div v-if="currentPlatform !== 'android'">
       <div class="setting-item switch">
         <p class="setting-title">
-          {{ t('settings.fullscreen') }}
+          {{ t("settings.fullscreen") }}
           <!--: {{ settings.fullscreen }} {{ isFullscreen }} -->
         </p>
         <input name="fullscreen" type="checkbox" role="switch" v-model="settings.fullscreen" />
         <button @click="settingStore.toggleFullscreen()" class="outline">
-          {{ isFullscreen ? t('settings.exitFullscreen') : t('settings.enterFullscreen') }}
+          {{ isFullscreen ? t("settings.exitFullscreen") : t("settings.enterFullscreen") }}
         </button>
       </div>
-      
+
       <hr />
     </div>
 
     <div class="setting-section">
       <div class="setting-item">
         <p class="setting-section-title">
-          {{ t('settings.clock') }}
+          {{ t("settings.clock") }}
         </p>
       </div>
 
       <div class="setting-item switch">
         <p class="setting-title">
-          {{ t('settings.showSeconds') }}
+          {{ t("settings.showSeconds") }}
           <!--: {{ settings.showSeconds }} -->
         </p>
         <input name="showSeconds" type="checkbox" role="switch" v-model="settings.showSeconds" />
@@ -145,12 +149,12 @@ const changeTheme = (theme: 'light' | 'dark') => {
     <div class="setting-section">
       <div class="setting-item">
         <p class="setting-section-title">
-          {{ t('settings.cal') }}
+          {{ t("settings.cal") }}
         </p>
       </div>
       <div class="setting-item switch">
         <p class="setting-title">
-          {{ t('settings.sundayRed') }}
+          {{ t("settings.sundayRed") }}
           <!--: {{ settings.sundayRed }} -->
         </p>
         <input name="sundayRed" type="checkbox" role="switch" v-model="settings.sundayRed" />
@@ -191,7 +195,6 @@ hr {
   flex-direction: column;
   gap: 0.5em;
 }
-
 
 .setting-section-title {
   font-size: x-large;

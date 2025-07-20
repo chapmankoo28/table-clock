@@ -1,36 +1,34 @@
 <script lang="ts" setup>
-import { PropType } from 'vue';
-import { useThemeStore } from '../stores/useThemeStore'
+import { useThemeStore } from "@/stores/useThemeStore";
+import { computed } from "vue";
 
-interface Color {
-  light: string
-  dark: string
+interface Props {
+  path: string;
+  size?: number | string;
+  color?: Color;
 }
 
-defineProps({
-  path: {
-    type: String,
-    required: true
-  },
-  size: {
-    type: [Number, String],
-    default: 24
-  },
-  color: {
-    type: Object as PropType<Color>,
-    default: () => ({
-      light: '#000000',
-      dark: '#ffffff'
-    })
-  }
-})
+interface Color {
+  light: string;
+  dark: string;
+}
 
-const themeStore = useThemeStore()
+const { path, size = 24, color = { light: "#000000", dark: "#ffffff" } } = defineProps<Props>();
+
+const themeStore = useThemeStore();
+const fillColor = computed(() => {
+  return themeStore.currentTheme === "dark" ? color.dark : color.light;
+});
 </script>
 
 <template>
-  <svg :width="size" :height="size" viewBox="0 -960 960 960" :style="{ fill: color[themeStore.currentTheme] }"
-    class="svg-icon">
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 -960 960 960"
+    :style="{ fill: fillColor }"
+    class="svg-icon"
+  >
     <path :d="path" />
   </svg>
 </template>

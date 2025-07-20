@@ -14,7 +14,7 @@
       {
         "title": "Table Clock",
         "width": 1100,
-        "height": 440,
+        "height": 520,
         "minWidth": 250,
         "minHeight": 440,
         "decorations": true,

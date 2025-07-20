@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import { useTimeStore } from './stores/useTimeStore';
+import { useTimeStore } from "@/stores/useTimeStore";
 import { onBeforeUnmount, onMounted } from "vue";
-import { useSettingStore } from "./stores/useSettingStore";
+import { useSettingStore } from "@/stores/useSettingStore";
 
-const settingStore = useSettingStore()
+const settingStore = useSettingStore();
 const timeStore = useTimeStore();
 
 onMounted(() => {
@@ -15,7 +15,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   timeStore.stop();
   settingStore.saveSettingsToStore();
-})
+});
 </script>
 
 <template>
