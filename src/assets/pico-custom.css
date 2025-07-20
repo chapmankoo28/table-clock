@@ -1,0 +1,18 @@
+/*
+ * Pico CSS Overrides
+ * Last updated: 2025-05-31
+ * 
+ * This file is used to overrides Pico CSS styles.
+ * Please load this AFTER pico.min.css
+ */
+
+:root,
+:host {
+    --pico-font-family-sans-serif: "Segoe UI Variable Display", "Segoe UI", "Helvetica Neue", Helvetica, 'Nimbus Sans', system-ui, Roboto, Oxygen, Ubuntu, Cantarell, Arial, sans-serif, var(--pico-font-family-emoji);
+    --pico-typography-spacing-vertical: 0;
+}
+
+
+[data-theme=dark] {
+    --pico-background-color: #000;
+}

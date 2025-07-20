@@ -4,12 +4,13 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite dev --host",
+    "dev": "vite dev",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "tauri": "tauri"
   },
   "dependencies": {
+    "@picocss/pico": "^2.1.1",
     "@tauri-apps/api": "^2.2.0",
     "@tauri-apps/plugin-opener": "2",
     "@tauri-apps/plugin-os": "~2",
