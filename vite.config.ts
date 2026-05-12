@@ -1,15 +1,15 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import path from "path";
+import vue from '@vitejs/plugin-vue'
+import { fileURLToPath } from 'node:url'
+import { defineConfig } from 'vite'
 
-const host = process.env.TAURI_DEV_HOST;
+const host = process.env.TAURI_DEV_HOST
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
   plugins: [vue()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': fileURLToPath(new URL('src', import.meta.url)),
     },
   },
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
@@ -23,23 +23,24 @@ export default defineConfig(() => ({
     host: host || false,
     hmr: host
       ? {
-          protocol: "ws",
+          protocol: 'ws',
           host,
           port: 1421,
         }
       : undefined,
     watch: {
       // 3. tell vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+      ignored: ['**/src-tauri/**'],
     },
   },
-  envPrefix: ["VITE_", "TAURI_ENV_*"],
+  envPrefix: ['VITE_', 'TAURI_ENV_*'],
   build: {
     // Tauri uses Chromium on Windows and WebKit on macOS and Linux
-    target: process.env.TAURI_ENV_PLATFORM == "windows" ? "chrome105" : "safari13",
+    // biome-ignore lint/suspicious/noDoubleEquals: tauri env variables are always strings
+    target: process.env.TAURI_ENV_PLATFORM == 'windows' ? 'chrome105' : 'safari13',
     // don't minify for debug builds
-    minify: !process.env.TAURI_ENV_DEBUG ? ("esbuild" as const) : false,
+    minify: !process.env.TAURI_ENV_DEBUG ? ('esbuild' as const) : false,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_ENV_DEBUG,
   },
-}));
+}))
