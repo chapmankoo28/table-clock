@@ -16,8 +16,7 @@ dist-ssr
 *.sh
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+!.vscode/*
 .idea
 .DS_Store
 *.suo
@@ -25,3 +24,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# releases
+releases
+
+GEMINI*

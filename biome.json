@@ -1,0 +1,50 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**", "!!**/node_modules", "!!**/dist"]
+  },
+  "formatter": {
+    "enabled": false
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useBlockStatements": "warn",
+        "useConsistentMemberAccessibility": "error",
+        "useConsistentArrayType": "error",
+        "noInferrableTypes": "error",
+        "noNamespace": "error",
+        "useConsistentObjectDefinitions": "warn",
+        "useNamingConvention": "error"
+      },
+      "suspicious": {
+        "noVar": "error",
+        "noUnknownAtRules": "error"
+      },
+      "complexity": { "useArrowFunction": "error" }
+    },
+    "domains": {
+      "vue": "recommended"
+    }
+  },
+  "css": {
+    "linter": {
+      "enabled": true
+    },
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "assist": {
+    "enabled": false
+  }
+}
