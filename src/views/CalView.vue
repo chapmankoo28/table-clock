@@ -1,84 +1,84 @@
 <script setup lang="ts">
-import { computed, watch } from "vue";
-import { useTimeStore } from "@/stores/useTimeStore";
-import { useSettingStore } from "@/stores/useSettingStore";
-import { useI18n } from "vue-i18n";
+import { useSettingStore } from '@/stores/useSettingStore'
+import { useTimeStore } from '@/stores/useTimeStore'
+import { computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const { t, locale } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: 'global' })
 
-const settingStore = useSettingStore();
-const timeStore = useTimeStore();
+const settingStore = useSettingStore()
+const timeStore = useTimeStore()
 
-const currentDate = computed(() => new Date(timeStore.time.getTime()));
-const year = currentDate.value.getFullYear();
-const month = currentDate.value.getMonth();
-const todayString = currentDate.value.toDateString();
+const currentDate = computed(() => new Date(timeStore.time.getTime()))
+const year = currentDate.value.getFullYear()
+const month = currentDate.value.getMonth()
+const todayString = currentDate.value.toDateString()
 
 const currentYearMonth = computed(() => {
   return new Intl.DateTimeFormat(settingStore.settings.lang, {
-    year: "numeric",
-    month: "long",
-  }).format(currentDate.value);
-});
+    year: 'numeric',
+    month: 'long',
+  }).format(currentDate.value)
+})
 
 watch(
   () => settingStore.settings.lang,
   (newLang) => {
-    locale.value = newLang;
-  },
-);
+    locale.value = newLang
+  }
+)
 
-const weekdays = ["0", "1", "2", "3", "4", "5", "6"];
+const weekdays = ['0', '1', '2', '3', '4', '5', '6']
 
-const getDateForDay = (day: string | number) => new Date(year, month, Number(day));
+const getDateForDay = (day: string | number) => new Date(year, month, Number(day))
 
 const isToday = (day: string | number) => {
-  return getDateForDay(day).toDateString() === todayString;
-};
+  return getDateForDay(day).toDateString() === todayString
+}
 
 const isRedSunday = (day: string | number) => {
-  if (!settingStore.settings.sundayRed) return false;
-  const dayIndex = getDateForDay(day).getDay();
-  return dayIndex === 0;
-};
+  if (!settingStore.settings.sundayRed) return false
+  const dayIndex = getDateForDay(day).getDay()
+  return dayIndex === 0
+}
 
 const calendarWeeks = computed(() => {
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
+  const firstDay = new Date(year, month, 1)
+  const lastDay = new Date(year, month + 1, 0)
 
-  let currentWeek: string[] = [];
-  const weeks = [];
-  let weekNum = 0;
+  let currentWeek: string[] = []
+  const weeks = []
+  let weekNum = 0
 
   // Add leading spaces
   for (let i = 0; i < firstDay.getDay(); i++) {
-    currentWeek.push("  ");
+    currentWeek.push('  ')
   }
 
   // Add days
   for (let day = 1; day <= lastDay.getDate(); day++) {
-    const date = new Date(year, month, day);
-    const dayStr = day.toString().padStart(2, " ");
+    const date = new Date(year, month, day)
+    const dayStr = day.toString().padStart(2, ' ')
 
-    currentWeek.push(dayStr);
+    currentWeek.push(dayStr)
 
     if (date.getDay() === 6 || day === lastDay.getDate()) {
       // Pad the last week if needed
       if (day === lastDay.getDate() && date.getDay() !== 6) {
         for (let i = date.getDay(); i < 6; i++) {
-          currentWeek.push("  ");
+          currentWeek.push('  ')
         }
       }
       weeks.push({
         weekNum: weekNum++,
         days: currentWeek,
-      });
-      currentWeek = [];
+      })
+      currentWeek = []
     }
   }
 
-  return weeks;
-});
+  return weeks
+})
 </script>
 
 <template>
@@ -184,7 +184,7 @@ hr {
 }
 
 .today::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 2.25em;
   height: 2.25em;

@@ -1,22 +1,22 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from 'vue-router'
 
-import SettingView from "@/views/SettingView.vue";
-import MainLayout from "@/layouts/MainLayout.vue";
+import MainLayout from '@/layouts/MainLayout.vue'
+import SettingView from '@/views/SettingView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: "/",
-      name: "Home",
+      path: '/',
+      name: 'Home',
       component: MainLayout,
     },
     {
-      path: "/setting",
-      name: "Setting",
+      path: '/setting',
+      name: 'Setting',
       component: SettingView,
     },
   ],
-});
+})
 
-export default router;
+export default router

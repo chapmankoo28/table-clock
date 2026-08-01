@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { RouterLink } from "vue-router";
-import SettingIcon from "@/components/SettingIcon.vue";
-import ClockView from "@/views/ClockView.vue";
-import CalView from "@/views/CalView.vue";
-import { useSettingStore } from "@/stores/useSettingStore";
-import { getCurrentWindow } from "@tauri-apps/api/window";
+import SettingIcon from '@/components/SettingIcon.vue'
+import { useSettingStore } from '@/stores/useSettingStore'
+import CalView from '@/views/CalView.vue'
+import ClockView from '@/views/ClockView.vue'
+import { getCurrentWindow } from '@tauri-apps/api/window'
+import { RouterLink } from 'vue-router'
 
-const settingStore = useSettingStore();
+const settingStore = useSettingStore()
 
-getCurrentWindow().listen("tauri://back-requested", () => {
-  getCurrentWindow().close();
-});
+getCurrentWindow().listen('tauri://back-requested', () => {
+  getCurrentWindow().close()
+})
 </script>
 
 <template>

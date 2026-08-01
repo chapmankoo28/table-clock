@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import Icon from "@/components/Icon.vue";
+import Icon from '@/components/Icon.vue'
 
 const iconColor = {
-  light: "#4c4c4c",
-  dark: "#adadad",
-};
+  light: '#4c4c4c',
+  dark: '#adadad',
+}
 </script>
 
 <template>
