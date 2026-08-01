@@ -1,4 +1,4 @@
-import { Theme } from '@/stores/useThemeStore'
+import type { Theme } from '@/stores/useThemeStore'
 import { getCurrentWindow } from '@tauri-apps/api/window'
 import { LazyStore } from '@tauri-apps/plugin-store'
 import { defineStore } from 'pinia'

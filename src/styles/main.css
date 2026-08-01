@@ -7,7 +7,7 @@ body {
 }
 
 :fullscreen {
-  cursor: default !important;
+  cursor: default;
 }
 
 /* @media (max-width: 768px)  if (screenWidth <= 768) */

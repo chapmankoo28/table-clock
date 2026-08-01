@@ -37,7 +37,9 @@ const isToday = (day: string | number) => {
 }
 
 const isRedSunday = (day: string | number) => {
-  if (!settingStore.settings.sundayRed) return false
+  if (!settingStore.settings.sundayRed) {
+    return false
+  }
   const dayIndex = getDateForDay(day).getDay()
   return dayIndex === 0
 }
