@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import { computed } from "vue";
-import { useTimeStore } from "@/stores/useTimeStore";
-import { useSettingStore } from "@/stores/useSettingStore";
+import { useSettingStore } from '@/stores/useSettingStore'
+import { useTimeStore } from '@/stores/useTimeStore'
+import { computed } from 'vue'
 
-const timeStore = useTimeStore();
-const settingStore = useSettingStore();
+const timeStore = useTimeStore()
+const settingStore = useSettingStore()
 
-const time = computed(() => new Date(timeStore.time.getTime()));
+const time = computed(() => new Date(timeStore.time.getTime()))
 const formattedTime = computed(() => {
-  const output =
-    time.value.getHours().toString().padStart(2, "0") +
-    ":" +
-    time.value.getMinutes().toString().padStart(2, "0");
+  const hr = time.value.getHours().toString().padStart(2, '0')
+  const min = time.value.getMinutes().toString().padStart(2, '0')
+  const output = `${hr}:${min}`
   if (settingStore.settings.showSeconds) {
-    return output + ":" + time.value.getSeconds().toString().padStart(2, "0");
+    const sec = time.value.getSeconds().toString().padStart(2, '0')
+    return `${output}:${sec}`
   }
-  return output;
-});
+  return output
+})
 </script>
 
 <template>
@@ -37,6 +37,7 @@ const formattedTime = computed(() => {
   height: 100%;
   margin: auto;
   user-select: none;
+  font-feature-settings: 'tnum';
 }
 
 .clock-show-seconds {
